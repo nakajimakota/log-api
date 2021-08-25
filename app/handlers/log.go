@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"net/http"
-	// "strconv"
+	"strconv"
 
 	// DEBUG:
 	// "log"
@@ -10,21 +10,22 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"app/controllers"
-	"app/lib"
+	// "app/lib"
 	// "app/models"
 )
 
 func CreateLog(c *gin.Context) {
-	// params := c.Request.URL.Query()
-	// tenantId, err := strconv.Atoi(c.Param("tenantId"))
-	// if err != nil {
-	// 	BadRequestMessage(c, "テナントIDが整数でありません")
-	// 	return
-	// }
+	userId, _ := strconv.Atoi(c.Param("userId"))
 	ctrl := controllers.NewLog()
-	is_create := ctrl.CreateLog()
-	if is_create == false {
-		lib.NotFound(c)
-	}
-	c.JSON(http.StatusOK, true)
+	logs := ctrl.CreateLog(userId)
+
+	c.JSON(http.StatusOK, logs)
+}
+
+func GetLogList(c *gin.Context) {
+	userId, _ := strconv.Atoi(c.Param("userId"))
+	ctrl := controllers.NewLog()
+	logs := ctrl.GetLogList(userId)
+
+	c.JSON(http.StatusOK, logs)
 }
