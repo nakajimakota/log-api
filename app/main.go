@@ -12,6 +12,7 @@ import (
 	"app/db"
 	"app/handlers"
 	"app/models"
+	"app/lib"
 )
 
 func setupRouter() *gin.Engine {
@@ -38,14 +39,12 @@ func setupRouter() *gin.Engine {
 	// 		"Authorization",
 	// 		"X-CSRFToken",
 	// 	},
-		// AllowOriginFunc: func(origin string) bool {
-        //     return origin == "http://localhost"
-        // },
 	// 	AllowCredentials: true,
 	// 	MaxAge: 24 * time.Hour,
 	//   }))
 	// log
 	log := r.Group("/log")
+	log.Use(lib.AuthHeader())
 	{
 		log.GET("/list/:userId", handlers.GetLogList)
 		log.POST("/create/:userId", handlers.CreateLog)

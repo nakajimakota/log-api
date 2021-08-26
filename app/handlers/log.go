@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -15,9 +16,18 @@ import (
 )
 
 func CreateLog(c *gin.Context) {
+	// var jsonData models.Log
 	userId, _ := strconv.Atoi(c.Param("userId"))
+	fmt.Println(userId)
+	// fmt.Println(c.BindJSON(&jsonData))
+	fmt.Println(c.PostForm("title"))
 	ctrl := controllers.NewLog()
 	logs := ctrl.CreateLog(userId)
+
+
+	fmt.Println("logs", logs)
+
+	fmt.Println("http.StatusOK", http.StatusOK)
 
 	c.JSON(http.StatusOK, logs)
 }
