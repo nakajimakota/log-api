@@ -10,13 +10,13 @@ func NewLog() Log {
 	return Log{}
 }
 
-func (c Log) CreateLog(userId int) interface{} {
+func (c Log) CreateLog(userId int, requestData map[string]string) interface{} {
 	repo := models.NewLogRepository()
-	log, result := repo.Create(userId)
-	if result {
-		return log
+	err := repo.Create(userId, requestData)
+	if err != false {
+		return false
 	}
-	return result
+	return true
 }
 
 func (c Log) GetLogList(userId int) interface{} {

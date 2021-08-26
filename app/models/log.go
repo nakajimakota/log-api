@@ -1,7 +1,7 @@
 package models
 
 import (
-	// "fmt"
+	"fmt"
 	// "net/url"
 	// "strconv"
 	"time"
@@ -25,11 +25,16 @@ func NewLogRepository() LogRepository {
 	return LogRepository{}
 }
 
-func (m LogRepository ) Create(userId int) ([]Log, bool) {
-	// db := db.GetDB()
-	var log []Log
-
-	return log, true
+func (m LogRepository ) Create(userId int, requestData map[string]string) (bool) {
+	mysql := db.GetDB()
+	mysql.Create(&Log{
+		UserId: userId,
+		Title: requestData["Title"],
+		ImageURL: requestData["ImageURL"],
+		SiteURL: requestData["SiteURL"],
+		OperationDatetime: time.Now(), 
+	})
+	return true
 }
 
 func (c LogRepository) GetAll(userId int) ([]Log, bool) {

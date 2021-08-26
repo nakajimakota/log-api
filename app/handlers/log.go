@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"fmt"
+	// "fmt"
 	"net/http"
 	"strconv"
 
@@ -12,24 +12,23 @@ import (
 
 	"app/controllers"
 	// "app/lib"
-	// "app/models"
+	"app/models"
+	// "log"
 )
-
 func CreateLog(c *gin.Context) {
-	// var jsonData models.Log
 	userId, _ := strconv.Atoi(c.Param("userId"))
-	fmt.Println(userId)
-	// fmt.Println(c.BindJSON(&jsonData))
-	fmt.Println(c.PostForm("title"))
+	var log models.Log
+	c.ShouldBindJSON(&log)
+	requestData := map[string]string{
+		"Title": log.Title,
+		"ImageURL": log.ImageURL,
+		"SiteURL": log.SiteURL,
+	}
+
 	ctrl := controllers.NewLog()
-	logs := ctrl.CreateLog(userId)
+	err := ctrl.CreateLog(userId, requestData)
 
-
-	fmt.Println("logs", logs)
-
-	fmt.Println("http.StatusOK", http.StatusOK)
-
-	c.JSON(http.StatusOK, logs)
+	c.JSON(http.StatusOK, err)
 }
 
 func GetLogList(c *gin.Context) {
