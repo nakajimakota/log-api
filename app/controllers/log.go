@@ -28,3 +28,13 @@ func (c Log) GetLogList(userId int) interface{} {
 
 	return logs
 }
+
+func (c Log) DeleteLog(logId int) interface{} {
+	repo := models.NewLogRepository()
+	res := repo.Delete(logId)
+	if res == false {
+		panic("err")
+	}
+
+	return true
+}

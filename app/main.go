@@ -27,6 +27,7 @@ func setupRouter() *gin.Engine {
 		},
 		AllowMethods: []string{
 			"POST",
+			"DELETE",
 			"OPTIONS",
 		},
 		AllowHeaders: []string{
@@ -48,6 +49,7 @@ func setupRouter() *gin.Engine {
 	{
 		log.GET("/list/:userId", handlers.GetLogList)
 		log.POST("/create/:userId", handlers.CreateLog)
+		log.POST("/delete/:logId", handlers.DeleteLog)
 	}
 	// tenant.Use(common.AuthHeader())
 

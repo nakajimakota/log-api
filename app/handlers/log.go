@@ -38,3 +38,11 @@ func GetLogList(c *gin.Context) {
 
 	c.JSON(http.StatusOK, logs)
 }
+
+func DeleteLog(c *gin.Context) {
+	logId, _ := strconv.Atoi(c.Param("logId"))
+	ctrl := controllers.NewLog()
+	res := ctrl.DeleteLog(logId)
+
+	c.JSON(http.StatusOK, res)
+}

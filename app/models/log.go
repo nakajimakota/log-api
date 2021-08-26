@@ -1,17 +1,17 @@
 package models
 
 import (
-	// "fmt"
+	"fmt"
 	// "net/url"
 	// "strconv"
 	"time"
-
-	"github.com/jinzhu/gorm"
+	// "log"
+	_ "github.com/jinzhu/gorm"
 
 	"app/db"
 )
 type Log struct {
-  gorm.Model
+  ID                 int    `gorm:"AUTO_INCREMENT;primary_key"`
   UserId        	 int 
   Title 			 string
   ImageURL 			 string
@@ -51,4 +51,12 @@ func (c LogRepository) GetAll(userId int) ([]Log, bool) {
 	// state.Find(&logs)
 
 	return logs, true
+}
+
+func (c LogRepository) Delete(logId int) bool {
+	mysql := db.GetDB()
+	log := Log{ID: logId}
+	mysql.Delete(log)
+
+	return true
 }
