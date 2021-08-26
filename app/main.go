@@ -6,7 +6,7 @@ import (
 	// "reflect"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
-	// "time"
+	"time"
 	
 
 	"app/db"
@@ -20,28 +20,28 @@ func setupRouter() *gin.Engine {
 	fmt.Println("OKOKOK")
 
 	r := gin.Default()
-	r.Use(cors.Default())
-	// r.Use(cors.New(cors.Config{
-	// 	AllowOrigins: []string{
-	// 		"http://localhost:8010",
-	// 	},
-	// 	AllowMethods: []string{
-	// 		"POST",
-	// 		"OPTIONS",
-	// 	},
-	// 	AllowHeaders: []string{
-	// 		"Origin",
-	// 		"Access-Control-Allow-Credentials",
-	// 		"Access-Control-Allow-Headers",
-	// 		"Content-Type",
-	// 		"Content-Length",
-	// 		"Accept-Encoding",
-	// 		"Authorization",
-	// 		"X-CSRFToken",
-	// 	},
-	// 	AllowCredentials: true,
-	// 	MaxAge: 24 * time.Hour,
-	//   }))
+	// r.Use(cors.Default())
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: []string{
+			"http://localhost:8010",
+		},
+		AllowMethods: []string{
+			"POST",
+			"OPTIONS",
+		},
+		AllowHeaders: []string{
+			"Origin",
+			"Access-Control-Allow-Credentials",
+			"Access-Control-Allow-Headers",
+			"Content-Type",
+			"Content-Length",
+			"Accept-Encoding",
+			"Authorization",
+			"X-CSRFToken",
+		},
+		AllowCredentials: true,
+		MaxAge: 24 * time.Hour,
+	  }))
 	// log
 	log := r.Group("/log")
 	log.Use(lib.AuthHeader())
