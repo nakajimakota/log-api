@@ -8,7 +8,7 @@ import (
 	// "log"
 	_ "github.com/jinzhu/gorm"
 
-	"app/db"
+	"db"
 )
 type Log struct {
   ID                 int    `gorm:"AUTO_INCREMENT;primary_key"`

@@ -11,10 +11,10 @@ import (
 	// "github.com/joho/godotenv"
 	
 
-	"app/db"
-	"app/handlers"
-	"app/models"
-	"app/lib"
+	"db"
+	"handlers"
+	"models"
+	"lib"
 )
 
 func setupRouter() *gin.Engine {

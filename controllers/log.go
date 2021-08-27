@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"app/models"
+	"models"
 )
 
 type Log struct{}
