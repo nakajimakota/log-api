@@ -1,1 +1,1 @@
-web: go_log_api
+web: app
