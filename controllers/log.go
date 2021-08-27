@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"models"
+	"github.com/nakajimakota/log-api/models"
 )
 
 type Log struct{}

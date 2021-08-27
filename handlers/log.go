@@ -10,9 +10,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"controllers"
+	"github.com/nakajimakota/log-api/controllers"
 	// "lib"
-	"models"
+	"github.com/nakajimakota/log-api/models"
 	// "log"
 )
 func CreateLog(c *gin.Context) {

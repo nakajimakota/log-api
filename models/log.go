@@ -5,7 +5,7 @@ import (
 	// "net/url"
 	// "strconv"
 	"time"
-	"db"
+	"github.com/nakajimakota/log-api/db"
 	// "log"
 	_ "github.com/jinzhu/gorm"
 )
