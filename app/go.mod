@@ -9,6 +9,8 @@ require (
 	github.com/harukasan/bindform v0.0.0-20150318153952-b96f6e697f0c
 	github.com/jinzhu/gorm v1.9.12
 	github.com/joho/godotenv v1.3.0
+	github.com/kr/fs v0.1.0 // indirect
+	github.com/kr/godep v0.0.0-20180126220526-ce0bfadeb516 // indirect
 	github.com/rubenv/sql-migrate v0.0.0-20200429072036-ae26b214fa43 // indirect
 	golang.org/x/text v0.3.2
 )
