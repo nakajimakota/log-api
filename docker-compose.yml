@@ -5,9 +5,9 @@ services:
     image: busybox
     container_name: log-api-volume
     volumes:
-      - ./db/mysql_data:/var/lib/mysql # データの永続化
+      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
   db:
-    build: db/
+    build: mysql/
     container_name: log-api-db
     expose:
       - "3306"
@@ -23,10 +23,10 @@ services:
     ports: 
       - "3309:3306"
   app:
-    build: app/dockerfiles/local/
+    build: dockerfiles/local/
     container_name: log-api
     volumes:
-      - ./app/:/go/src/app
+      - ./:/go/src/app
     command: go run main.go
     restart: always
     ports:
