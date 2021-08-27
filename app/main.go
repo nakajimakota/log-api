@@ -3,10 +3,12 @@ package main
 import (
 	// for debuging
 	"fmt"
+	"os"
 	// "reflect"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"time"
+	// "github.com/joho/godotenv"
 	
 
 	"app/db"
@@ -59,10 +61,17 @@ func setupRouter() *gin.Engine {
 var router = setupRouter()
 
 func main() {
+	os.Setenv("PORT", "8011")
+	// err := godotenv.Load(fmt.Sprintf("envfiles/%s.env", os.Getenv("GO_ENV")))
+	// if err != nil {
+	// 	fmt.Printf("読み込み出来ませんでした: %v", err)
+	// } 
+	port := os.Getenv("PORT")
 	mysql := db.Init()
 	mysql.AutoMigrate(&models.Log{})
 	defer mysql.Close()
+	fmt.Println(port, "WE")
 
 	r := router
-	r.Run(":8011")
+	r.Run(":"+port)
 }
