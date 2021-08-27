@@ -80,8 +80,10 @@ package main
 import (
     "log"
 	"os"
+	"fmt"
 
     "github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
