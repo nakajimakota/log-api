@@ -1,1 +1,1 @@
-web: log-api
+web: bin/log-api
