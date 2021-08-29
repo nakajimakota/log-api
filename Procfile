@@ -1,1 +1,1 @@
-web: bin/go_log_api
+web: github.com/nakajimakota/log-api
