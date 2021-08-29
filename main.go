@@ -10,7 +10,6 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 
 	"github.com/nakajimakota/log-api/db"
 	"github.com/nakajimakota/log-api/handlers"
@@ -62,18 +61,24 @@ func setupRouter() *gin.Engine {
 var router = setupRouter()
 
 func main() {
-	os.Setenv("PORT", "8011")
-	err := godotenv.Load(fmt.Sprintf("envfiles/.env", os.Getenv("GO_ENV")))
-	if err != nil {
-		fmt.Printf("読み込み出来ませんでした: %v", err)
-	}
-	port := os.Getenv("PORT")
+	// os.Setenv("PORT", "8011")
+	// err := godotenv.Load(fmt.Sprintf("envfiles/.env", os.Getenv("GO_ENV")))
+	// if err != nil {
+	// 	fmt.Printf("読み込み出来ませんでした: %v", err)
+	// }
 	mysql := db.Init()
 	mysql.AutoMigrate(&models.Log{})
 	defer mysql.Close()
-	fmt.Println(port, "WE")
 
 	r := router
-	r.Run()
+	r.Run(getListenPort())
 	// http.ListenAndServe(":8011", r)
+}
+
+func getListenPort() string {
+	port := os.Getenv("PORT")
+	if port != "" {
+		return ":" + port
+	}
+	return ":8011"
 }
