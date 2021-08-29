@@ -26,7 +26,7 @@ func setupRouter() *gin.Engine {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{
 			"http://localhost:8010",
-			"https://dpo-django.herokuapp.com"
+			"https://dpo-django.herokuapp.com",
 		},
 		AllowMethods: []string{
 			"POST",
