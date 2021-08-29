@@ -1,36 +1,17 @@
-
-version: '2'
+version: '3.7' # composeファイルのバーション指定
 services:
-  volume:
-    image: busybox
-    container_name: log-api-volume
+  log-api: # service名
+    build: . # ビルドに使用するDockerfileがあるディレクトリ指定
+    tty: true # コンテナの起動永続化
     volumes:
-      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
-  db:
-    build: mysql/
-    container_name: log-api-db
-    expose:
-      - "3306"
-    mem_limit: 1g
-    environment:
-      - MYSQL_ROOT_PASSWORD=root #rootパスワードの設定
-      - MYSQL_DATABASE=log-api
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=user
-    volumes_from:
-      - volume
-    restart: always
-    ports: 
-      - "3309:3306"
-  app:
-    build: dockerfiles/local/
-    container_name: log-api
-    volumes:
-      - ./:/go/src/app
-    command: go run main.go
-    restart: always
+      - .:/go/src/github.com/nakajimakota/log-api # マウントディレクトリ指定
     ports:
       - "8011:8011"
-    mem_limit: 500m
-    depends_on:
-      - "db"
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: go-log-api
+    ports:
+      - 5432:5432 

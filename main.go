@@ -4,18 +4,18 @@ import (
 	// for debuging
 	"fmt"
 	"os"
+
 	// "reflect"
-	"github.com/gin-gonic/gin"
-	"github.com/gin-contrib/cors"
 	"time"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	
 
-
-	"github.com/nakajimakota/log-api/handlers"
-	"github.com/nakajimakota/log-api/models"
-	"github.com/nakajimakota/log-api/lib"
 	"github.com/nakajimakota/log-api/db"
+	"github.com/nakajimakota/log-api/handlers"
+	"github.com/nakajimakota/log-api/lib"
+	"github.com/nakajimakota/log-api/models"
 )
 
 func setupRouter() *gin.Engine {
@@ -44,8 +44,8 @@ func setupRouter() *gin.Engine {
 			"X-CSRFToken",
 		},
 		AllowCredentials: true,
-		MaxAge: 24 * time.Hour,
-	  }))
+		MaxAge:           24 * time.Hour,
+	}))
 	// log
 	log := r.Group("/log")
 	log.Use(lib.AuthHeader())
@@ -63,10 +63,10 @@ var router = setupRouter()
 
 func main() {
 	os.Setenv("PORT", "8011")
-	err := godotenv.Load(fmt.Sprintf("envfiles/%s.env", os.Getenv("GO_ENV")))
+	err := godotenv.Load(fmt.Sprintf("envfiles/.env", os.Getenv("GO_ENV")))
 	if err != nil {
 		fmt.Printf("読み込み出来ませんでした: %v", err)
-	} 
+	}
 	port := os.Getenv("PORT")
 	mysql := db.Init()
 	mysql.AutoMigrate(&models.Log{})
@@ -74,5 +74,5 @@ func main() {
 	fmt.Println(port, "WE")
 
 	r := router
-	r.Run(":"+port)
+	r.Run(":" + port)
 }

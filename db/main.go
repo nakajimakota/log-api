@@ -3,7 +3,7 @@ package db
 import (
 	// "fmt"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	_ "github.com/jinzhu/gorm/dialects/postgres" // Use PostgreSQL in gorm
 )
 
 type Database struct {
@@ -13,7 +13,7 @@ type Database struct {
 var DB *gorm.DB
 
 func Init() *gorm.DB {
-	conn, err := gorm.Open("mysql", "user:user@tcp(db:3306)/log-api?charset=utf8mb4&parseTime=True&loc=Local")
+	conn, err := gorm.Open("postgres", "host=db port=5432 user=user dbname=go-log-api password=user sslmode=disable")
 	if err != nil {
 		panic("データベース接続に失敗しました")
 	}
