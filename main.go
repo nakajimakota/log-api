@@ -3,6 +3,7 @@ package main
 import (
 	// for debuging
 	"fmt"
+	"net/http"
 	"os"
 
 	// "reflect"
@@ -74,5 +75,6 @@ func main() {
 	fmt.Println(port, "WE")
 
 	r := router
-	r.Run(":" + port)
+	// r.Run(":" + port)
+	http.ListenAndServe(":8011", r)
 }
