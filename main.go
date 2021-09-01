@@ -24,7 +24,7 @@ func setupRouter() *gin.Engine {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{
 			"http://localhost:8012",
-			"https://hye4i1ku95.execute-api.ap-northeast-1.amazonaws.com/dev",
+			"https://hye4i1ku95.execute-api.ap-northeast-1.amazonaws.com",
 			"https://amp-django.herokuapp.com",
 		},
 		AllowMethods: []string{
