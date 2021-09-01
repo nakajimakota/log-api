@@ -40,7 +40,7 @@ func setupRouter() *gin.Engine {
 			"Content-Length",
 			"Accept-Encoding",
 			"Authorization",
-			"X-CSRFToken",
+			// "X-CSRFToken",
 		},
 		AllowCredentials: true,
 		MaxAge:           24 * time.Hour,
