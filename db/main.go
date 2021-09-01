@@ -8,7 +8,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" // Use PostgreSQL in gorm
-	// "github.com/lib/pq"
+	"github.com/lib/pq"
 )
 
 type Database struct {
