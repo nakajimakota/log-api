@@ -23,6 +23,7 @@ func CreateLog(c *gin.Context) {
 		"Title": log.Title,
 		"ImageURL": log.ImageURL,
 		"SiteURL": log.SiteURL,
+		"Service": log.Service,
 	}
 
 	ctrl := controllers.NewLog()

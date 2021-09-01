@@ -15,6 +15,7 @@ type Log struct {
   Title 			 string
   ImageURL 			 string
   SiteURL 			 string
+  Service            string
   OperationDatetime  time.Time
 }
 
@@ -31,6 +32,7 @@ func (m LogRepository ) Create(userId int, requestData map[string]string) (bool)
 		Title: requestData["Title"],
 		ImageURL: requestData["ImageURL"],
 		SiteURL: requestData["SiteURL"],
+		Service: requestData["Service"],
 		OperationDatetime: time.Now(), 
 	})
 	return true

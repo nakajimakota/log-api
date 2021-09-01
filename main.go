@@ -2,7 +2,7 @@ package main
 
 import (
 	// for debuging
-	"fmt"
+	// "fmt"
 	"os"
 
 	// "reflect"
@@ -19,14 +19,12 @@ import (
 
 func setupRouter() *gin.Engine {
 
-	fmt.Println("OKOKOK")
-
 	r := gin.Default()
 	// r.Use(cors.Default())
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{
-			"http://localhost:8010",
-			"https://dpo-django.herokuapp.com",
+			"http://localhost:8012",
+			"https://hye4i1ku95.execute-api.ap-northeast-1.amazonaws.com/dev",
 		},
 		AllowMethods: []string{
 			"POST",
