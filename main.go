@@ -25,7 +25,7 @@ func setupRouter() *gin.Engine {
 		AllowOrigins: []string{
 			"http://localhost:8012",
 			"https://hye4i1ku95.execute-api.ap-northeast-1.amazonaws.com/dev",
-			"https://amp-django.herokuapp.com/",
+			"https://amp-django.herokuapp.com",
 		},
 		AllowMethods: []string{
 			"POST",
